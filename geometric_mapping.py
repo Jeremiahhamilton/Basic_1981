@@ -43,7 +43,6 @@ class Delta1RingGeometry:
             ring_size: Number of discrete cells in the ring (default: 360 for degree-like representation)
         """
         self.ring_size = ring_size
-        self.modulus = ring_size
     
     def map_number_to_geometry(self, value: int) -> GeometricCoordinate:
         """
@@ -76,8 +75,7 @@ class Delta1RingGeometry:
         
         # 5. Antipode State: The mirror point on the opposite side of the ring
         # This is the geometric dual of the current position
-        antipode_cell = (cell_index + self.ring_size // 2) % self.ring_size
-        antipode_state = antipode_cell
+        antipode_state = (cell_index + self.ring_size // 2) % self.ring_size
         
         return GeometricCoordinate(
             cell_index=cell_index,
